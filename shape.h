@@ -19,23 +19,38 @@ double ecart_angulair( segment& segment1, segment& segment2) {
     return angular;
 };
 bool super_pos( segment& segment1,  segment& segment2) {
-    double angularGap = ecart_angulair(segment1, segment2);
-    return fabs(angularGap) < EPSILON;
+    double angularGap=ecart_angulair(segment1, segment2);
+    return fabs(angularGap)<EPSILON;
 }
+bool itersection( segment& segment1,segment& segment2) {
+    base end1=segment1.extr();
+    base end2=segment2.extr();
+    return (end1.x>=segment2.getX() && end2.x>=segment1.getX() &&
+            end1.y>=segment2.getY() && end2.y>=segment1.getY());
+}
+
 int orientation(base p,base q,base r) 
 {
-    int val=(q.y-p.y)*(r.x-q.x)-(q.x-p.x)*(r.y-q.y); 
-    if (val==0) return 0;
-  
-    return (val > 0)? 1: 2; 
-}
-bool intersection(segment& A,segment& B){
-        float prod_vectoriel1 = (B.extr().x-A.get_base().x)*(A.get_base().y-B.get_base().y)-
-                                (A.get_base().x-B.get_base().x)*(B.extr().y-A.get_base().y);
-        float prod_vectoriel2 = (A.extr().x-A.get_base().x)*(A.get_base().y-B.get_base().y)-
-                                (A.get_base().x-B.get_base().x)*(A.extr().y-A.get_base().y);
-                                
+    double val=(q.y-p.y)*(r.x-q.x)-(q.x-p.x)*(r.y-q.y);
+    double pq_Norm =sqrt((q.x-p.x)*(q.x-p.x)+(q.y-p.y)*(q.y-p.y));
+    double distance =val/pq_Norm;
+    if (fabs(distance)<EPSILON) {
+        return 0; 
     }
-
-
+    return (val > 0)?1:-1; 
+}
+double produitvectoriel(const S2d& v1, const S2d& v2) {
+    return v1.x * v2.x + v1.y * v2.y;
+}
+double norm(const S2d& v) {
+    return sqrt(v.x*v.x+v.y*v.y);
+}
+bool onSegment(const S2d& p, const S2d& q, const S2d& r) {
+    S2d pr = {r.x-p.x, r.y-p.y};
+    S2d pq = {q.x-p.x, q.y-p.y};
+    double dot =produitvectoriel(pr, pq);
+    double prNorm =norm(pr);
+    double projection =dot/prNorm;
+    return (projection >=-EPSILON && projection<=prNorm+EPSILON);
+}
 #endif 
