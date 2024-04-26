@@ -44,3 +44,10 @@ bool intersection(segment& A,segment& B){
 
 
 #endif 
+
+
+
+
+
+
+
