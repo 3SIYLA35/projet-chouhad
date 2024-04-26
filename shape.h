@@ -53,6 +53,7 @@ bool onSegment(const S2d& p, const S2d& q, const S2d& r) {
     double projection =dot/prNorm;
     return (projection >=-EPSILON && projection<=prNorm+EPSILON);
 }
+// jlfiauhguiahlu
 #endif 
 
 
