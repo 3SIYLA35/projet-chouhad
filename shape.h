@@ -1,23 +1,22 @@
 #ifndef shape
 #define shape
+#define PI 3.14159265358979323846
 #include <iostream>
-#include "rendu1.cpp"
+#include "rendu1.cc"
 #include <cmath>
-#include "PI.H"
 #define EPSILON 1e-9
  using namespace std;
-
-
-double ecart_angulair( segment& segment1, segment& segment2) {
+double ecart_angulair( segment& segment1, segment& segment2){
     base end1 = segment1.extr();
     base end2 = segment2.extr();
     double angle1=atan2(end1.y-segment1.getY(), end1.x-segment1.getX());
     double angle2=atan2(end2.y-segment2.getY(),end2.x-segment2.getX());
-     double angular = angle2 - angle1;
-    while(angular>Pi){angular-=2*Pi;}
-    while (angular<=-Pi){angular+=2*Pi;};
-    return angular;
+     double angularGap = angle2 - angle1;
+    while(angularGap>PI){angularGap -= 2 * PI;};
+    while (angularGap<= -PI) {angularGap += 2*PI;};
+    return angularGap;
 };
+;
 bool super_pos( segment& segment1,  segment& segment2) {
     double angularGap=ecart_angulair(segment1, segment2);
     return fabs(angularGap)<EPSILON;

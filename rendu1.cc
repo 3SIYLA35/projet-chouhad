@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#include "constantes.h"
 using namespace std;
 
 typedef struct S2d {double x=0.; double y=0.;}base ;
@@ -9,9 +10,12 @@ class segment{
     float angle;
     float longueur;
     public:
-    segment(float poix,float poiy,float ang,float lon)
-    :angle(ang),longueur(lon){point.x=poix;
-    point.y=poiy;};
+    segment(){
+        point.x=round() % (int)(dmax -2);
+        point.y=round() % (int)(dmax -2);
+        longueur=sqrt();
+        
+    };
     float getangle(){return angle;}
     float getlongueur(){return longueur;}
     double getX(){return point.x;}
