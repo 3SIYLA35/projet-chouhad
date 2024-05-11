@@ -1,9 +1,11 @@
 #ifndef shape
 #define shape
 #define PI 3.14159265358979323846
-#include <iostream>
 #include "rendu1.cc"
 #include <cmath>
+#include "constantes.h"
+#include "message.cc"
+#include "message.h"
 #define EPSILON 1e-9
  using namespace std;
 double ecart_angulair( segment& segment1, segment& segment2){
@@ -52,6 +54,10 @@ bool onSegment(const S2d& p, const S2d& q, const S2d& r) {
     double projection =dot/prNorm;
     return (projection >=-EPSILON && projection<=prNorm+EPSILON);
 }
+
+
+//------------------------------check------------------------
+
 #endif 
 
 

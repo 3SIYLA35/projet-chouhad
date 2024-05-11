@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cmath>
 #include "constantes.h"
+#include "shape.h"
 using namespace std;
 
 typedef struct S2d {double x=0.; double y=0.;}base ;
@@ -11,9 +12,10 @@ class segment{
     float longueur;
     public:
     segment(){
-        point.x=round() % (int)(dmax -2);
-        point.y=round() % (int)(dmax -2);
-        longueur=sqrt();
+        point.x=rand() % (int)(dmax -2);
+        point.y=rand() % (int)(dmax -2);
+        angle = (rand())/(RAND_MAX)*2*PI; // Angle entre 0 et 2*PI
+        longueur = (rand()%(int)(dmax)); 
         
     };
     float getangle(){return angle;}
