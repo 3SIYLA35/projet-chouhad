@@ -16,12 +16,12 @@ double ecart_angulair( segment& segment1, segment& segment2){
     while (angularGap<= -PI) {angularGap += 2*PI;};
     return angularGap;
 };
-;
+
 bool super_pos( segment& segment1,  segment& segment2) {
     double angularGap=ecart_angulair(segment1, segment2);
     return fabs(angularGap)<EPSILON;
 }
-bool itersection( segment& segment1,segment& segment2) {
+bool intersection( segment& segment1,segment& segment2) {
     base end1=segment1.extr();
     base end2=segment2.extr();
     return (end1.x>=segment2.getX() && end2.x>=segment1.getX() &&
@@ -38,7 +38,7 @@ int orientation(base p,base q,base r)
     }
     return (val > 0)?1:-1; 
 }
-double produitvectoriel(const S2d& v1, const S2d& v2) {
+double produit_scalair(const S2d& v1, const S2d& v2) {
     return v1.x * v2.x + v1.y * v2.y;
 }
 double norm(const S2d& v) {
@@ -47,16 +47,10 @@ double norm(const S2d& v) {
 bool onSegment(const S2d& p, const S2d& q, const S2d& r) {
     S2d pr = {r.x-p.x, r.y-p.y};
     S2d pq = {q.x-p.x, q.y-p.y};
-    double dot =produitvectoriel(pr, pq);
+    double dot = produit_scalair(pr, pq);
     double prNorm =norm(pr);
     double projection =dot/prNorm;
     return (projection >=-EPSILON && projection<=prNorm+EPSILON);
 }
-#endif 
-
-
-
-
-
-
+#endif
 
