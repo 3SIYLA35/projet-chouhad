@@ -12,11 +12,8 @@ protected:
     int age;
 
  public:
-    lifeforme():age(1){
-        position.x=rand() % (int)(dmax-1)+1;
-        position.y=rand() % (int)(dmax-1)+1;;
-    }
-    ~lifeforme(){}
+    lifeforme();
+    ~lifeforme();
 
     base getPosition(){return position;}
     int getAge(){return age;}
@@ -27,8 +24,7 @@ protected:
 
 class alg:public lifeforme{
    public:
-   alg():lifeforme(){}
-   bool algue_dead(){return age>=alg_birth_rate;}
+   alg();
   };
 
 class corail:public lifeforme{
@@ -44,25 +40,26 @@ class corail:public lifeforme{
     float effecteur=0;
     public:
     corail():lifeforme(){
-        position.x=rand()% (int)(dmax -2);
-        position.y=rand()%(int)(dmax-2);
-        unique++;
-        id=unique;
-        tab_id.push_back(id);
-        segments.push_back(t);
-        nbr_seg++;
-        status=ALIVE;
-        status_dev=REPRO;
-        effecteur=getlongeur();
-        age=1; 
+        // position.x=rand()% (int)(dmax -2);
+        // position.y=rand()%(int)(dmax-2);
+        // unique++;
+        // id=unique;
+        // tab_id.push_back(id);
+        // segments.push_back(t);
+        // nbr_seg++;
+        // status=ALIVE;
+        // status_dev=REPRO;
+        // effecteur=getlongeur();
+        // age=1; 
     }
-    float getlongeur(){
 
-        for (int i=1;i<=nbr_seg;i++){
-              effecteur+=segments[i].getlongueur();
-        }
-        return effecteur;
-    }
+    float getlongeur();
+
+    //     for (int i=1;i<=nbr_seg;i++){
+    //           effecteur+=segments[i].getlongueur();
+    //     }
+    //     return effecteur;
+    // }
     base getpos(){return position;};
     vector<segment> getsegment(){return segments;} 
     int getage(){return age;}
