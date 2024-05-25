@@ -17,6 +17,8 @@ protected:
 
     base getPosition(){return position;}
     int getAge(){return age;}
+    void check_age();
+
 };
 
 
@@ -66,13 +68,11 @@ class corail:public lifeforme{
     int getid(){return id;}
     int get_nbrseg(){return nbr_seg;}
     float getefecteur(){return effecteur;}
-    string segment_consecutive(segment &, segment &);
-    string check_age();
-    string check_lenght();
-    string check_angle();//---------------
-    string check_id();
+    void check_lenght();
+    void check_angle();//---------------
+    void check_id();
 };
-int corail::unique=0;
+
 
 
 class scavanger:public lifeforme{
@@ -81,7 +81,7 @@ class scavanger:public lifeforme{
     scavanger():lifeforme(){
     
     }
-    string check_raduis();
+    void check_raduis();
 
 }
 

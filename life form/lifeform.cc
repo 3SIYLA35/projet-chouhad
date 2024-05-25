@@ -5,49 +5,47 @@
 #include "../message.h"
 #include "../shape.h"
 
-string corail:: segment_consecutive(segment &segment1, segment &segment2){
-    if(ecart_angulair(segment1,segment2)==0 && (ecart_angulair(segment1,
-    segment2)>(-delta_rot) || ecart_angulair(segment1,segment2)<delta_rot)){
-        message::segment_superposition(id,segment1.getlongueur(),segment2.getlongueur());
-    }
-    else{
 
-    }
-}
-string corail::check_age(){
-    if(age>0){
-        return message::lifeform_age(age);
-    }
-    else{
-        cout<<age <<"est negative";
-    }
+void lifeforme::check_age(){
+    if(age<0){
+        cout << message::lifeform_age(age);
+        exit(EXIT_FAILURE);
+    } 
 };
-string corail::check_lenght(){
+
+int corail::unique = 0;
+
+void lifeforme::check_lenght(){
     if(effecteur>=l_seg_interne && effecteur<=l_repro){
-        return message::segment_length_outside(id,effecteur);
-    }
-    else{
-        cout<<"la longeur est pas compris dans l'interval [l_repro-l_seg_interne, l_repro[";
+        cout << message::segment_length_outside(id,effecteur);
+        exit(EXIT_FAILURE);
     }
 }
-string corail::check_angle(){
-    int compteur=0;
-    for(int i(0);i<nbr_seg;i++){
-         if(segments[i].getangle()>(-PI)&& segments[i].getangle()<PI)
-         compteur++;
-    }//------------------------------------------------------------------
-    if(compteur==nbr_seg){
-        return message::segment_angle_outside(id,orientation());
+void corail::check_angle(int id, double a){
+    if (seg[i].angle < -M_PI || seg[i].angle > M_PI){
+        cout << message::segment_angle_outside(id, a);
     }
 }
-string corail::check_id(){
+
+void corail::check_id(){
     for(auto i  : tab_id){
         if(id==i)
         {cout<<"id duplicated";
         exit(-1);}
     }
-    return message::lifeform_duplicated_id(id);
+    cout << message::lifeform_duplicated_id(id);
 }
-string scavanger::check_raduis(){
-    
+
+void corail::check_lenght(){
+    if (segments[i]. < l_repro - l_seg_interne || seg[i].longueur >= l_repro){
+        cout << message::segment_length_outside(id, )
+        exit(EXIT_FAILURE);
+    }
+}
+
+void scavanger::check_raduis(){
+    if (rayon < r_sca || rayon >= r_sca_repro){
+        cout << message::scavanger_radius_outside(rayon);
+        exit(EXIT_FAILURE);
+    }
 }
